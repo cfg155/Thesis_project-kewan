@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.drawing {
+  width: 600px;
+}
+
+#Layer_1 {
+  width: 100%;
+}
+
+.body-part {
+  cursor: pointer;
+}
+
+.color-circle__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.color-circle {
+  width: 75px;
+  height: 75px;
+  border: 1px solid #000;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.clear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
