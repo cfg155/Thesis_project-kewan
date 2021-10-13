@@ -9,117 +9,77 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/mewarnai-hewan-detail.css">
 </head>
-<style>
-    .content__wrapper {
-        height: 100vh;
-        width: 100%;
-        margin: auto;
-        background-image: url('../image/bg.jpg');
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-
-    .drawing {
-        width: 35%;
-        display: grid;
-        align-items: center;
-        z-index: 99;
-        background-color: #fff;
-    }
-
-    #Layer_1 {
-        width: 100%;
-    }
-
-    .body-part {
-        cursor: pointer;
-    }
-
-    .color-circle__wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        width: 100px;
-    }
-
-    .color-circle {
-        width: 50px;
-        height: 50px;
-        border: 1px solid #000;
-        cursor: pointer;
-        border-radius: 100%;
-    }
-
-    .clear {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .ref-img {}
-
-    .ref-img__wrapper {
-        width: 100px;
-        height: 100px;
-        display: grid;
-        align-items: center;
-    }
-
-    .ref-img__wrapper object {
-        width: 100%;
-    }
-
-    .color-pallete {
-        position: absolute;
-        right: 40px;
-    }
-
-    #color-input {
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-    }
-
-    .content {
-        width: 100%;
-        background-color: #fff;
-        padding: 50px 0;
-    }
-</style>
 
 <body>
-    <div class="content__wrapper" style="position: relative;">
-        <h1 class="text-center" style="height: 100px;display: grid;align-items: center;"><?= $dataHewan['nama_binatang'] ?></h1>
-        <div class="content d-flex justify-content-center">
-            <div class="drawing">
-                <?= $dataHewan['svg_code'] ?>
+    <div class="super__container">
+        <div class="modal-validation">
+            <div class="modal-validation__wrapper">
+                <div class="arrow-back__wrapper">
+                    <button class="btn-arrow-back">Kembali</button>
+                </div>
+                <div class="storedImage__wrapper">
+                    <?= $dataHewan['svg_code'] ?>
+                </div>
+                <div class="ref-image__wrapper">
+                    <img src="<?= $dataHewan['gambar_validasi'] ?>" alt="">
+                </div>
+                <button class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></button>
             </div>
-            <div class="color-pallete">
-                <div class="color-circle__wrapper">
-                    <div class="color-circle clear" data-color="white">Hapus</div>
-                    <input type="color" id="color-input" class="color-input">
-                    <div class="color-circle" data-color="#FF0000"></div>
-                    <div class="color-circle" data-color="#008000"></div>
-                    <div class="color-circle" data-color="#FFFFFF"></div>
-                    <div class="color-circle" data-color="#FFFF00"></div>
-                    <div class="color-circle" data-color="#800080"></div>
+        </div>
+
+        <div class="content__wrapper" style="position: relative;">
+            <div class="header">
+                <h1 class="text-center" style="height: 100%; display: grid; align-items: center;width: 200px;background-color: #fff; margin: auto;border-radius: 50%;"><?= $dataHewan['nama_binatang'] ?></h1>
+
+                <div class="sound__wrapper">
+                    <button>Sound On</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="drawing">
+                    <?= $dataHewan['svg_code'] ?>
+                </div>
+                <div class="color-pallete">
+                    <div class="color-circle__wrapper">
+                        <div class="color-circle clear" data-color="white">Hapus</div>
+                        <input type="color" id="color-input" class="color-input">
+                        <div class="color-circle" data-color="#FF0000"></div>
+                        <div class="color-circle" data-color="#008000"></div>
+                        <div class="color-circle" data-color="#FFFFFF"></div>
+                        <div class="color-circle" data-color="#FFFF00"></div>
+                        <div class="color-circle" data-color="#800080"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer position-relative">
+                <div class="logo-kewan__wrapper">
+                    <img src="/image/kewan-logo.png" alt="" class="logo-kewan">
+                </div>
+                <div class="btn-validasi__wrapper">
+                    <button class="btn btn-validasi">Selesai</button>
                 </div>
             </div>
         </div>
-        <ul style="color: red;" style="position: absolute;bottom: 0;left: 0;">
-            <li>Note, things to add</li>
-            <li>generating correct color for the image</li>
-        </ul>
     </div>
+
 
 </body>
 
 </html>
 
 <script>
+    function appendColor(color) {
+        let divColor = ''
+        color.forEach(color => {
+            divColor += `<div class="color-circle" data-color="${color}"></div>`
+        })
+        document.querySelector('.color-circle__wrapper').innerHTML += divColor
+    }
+
+    appendColor(<?= $dataHewan['warna_array'] ?>)
+
     let colorCircle = document.querySelectorAll('.color-circle')
     let fillComponent = []
     let currentColor = '#fff'
@@ -129,7 +89,6 @@
     colorInput.addEventListener('input', () => {
         currentColor = colorInput.value
     })
-
 
     function getColor() {
         function storeColor(e) {
@@ -146,18 +105,18 @@
 
     getColor()
 
-    function coloring() {
-        let limitFillComponent = <?= $dataHewan['component_limit']; ?>
+    let storeComponentColor = {}
+    let limitFillComponent = <?= $dataHewan['component_limit']; ?>
 
-        for (let i = 0; i < limitFillComponent; i++) {
-            fillComponent[i] = document.getElementById(`d${i+1}`)
+    function coloring() {
+        for (let i = 1; i < limitFillComponent + 1; i++) {
+            fillComponent[i] = document.querySelector(`.drawing #d${i}`)
         }
 
         function setColor(e) {
             this.style.fill = currentColor
 
-            // let colorInput = document.getElementById('color-input')
-            // console.log(colorInput.value)
+            storeComponentColor[this.id.slice(1, 5)] = currentColor
         }
 
         fillComponent.forEach(component => {
@@ -166,4 +125,35 @@
     }
 
     coloring()
+
+    function doneColoring() {
+        let modalValidation = document.querySelector('.modal-validation')
+
+        // create click function
+        document.querySelector('.btn-validasi').addEventListener('click', () => {
+            modalValidation.style.display = 'block'
+
+            let fillComponent2 = []
+
+            for (let i = 1; i < limitFillComponent + 1; i++) {
+                fillComponent2[i] = document.querySelector(`.storedImage__wrapper #d${i}`)
+
+                if (storeComponentColor[i] != null || storeComponentColor[i] != undefined) {
+                    fillComponent2[i].style.fill = storeComponentColor[i]
+                }
+            }
+
+        })
+
+        // create arrow back function
+        function arrowBack() {
+            document.querySelector('.btn-arrow-back').addEventListener('click', () => {
+                modalValidation.style.display = 'none'
+            })
+        }
+
+        arrowBack()
+    }
+
+    doneColoring();
 </script>

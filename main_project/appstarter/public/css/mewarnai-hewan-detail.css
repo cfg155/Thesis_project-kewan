@@ -1,0 +1,104 @@
+.super__container {
+  position: relative; }
+  .super__container .modal-validation {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    display: none; }
+    .super__container .modal-validation .arrow-back__wrapper {
+      position: absolute;
+      top: 50px;
+      left: 30px; }
+    .super__container .modal-validation__wrapper {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .super__container .modal-validation__wrapper .ref-image__wrapper {
+        width: 300px;
+        height: 300px;
+        background-color: #fff;
+        padding: 20px;
+        max-height: 300px; }
+        .super__container .modal-validation__wrapper .ref-image__wrapper img {
+          width: 100%;
+          max-height: 250px; }
+      .super__container .modal-validation__wrapper .storedImage__wrapper {
+        width: 300px;
+        height: 300px;
+        background-color: #fff;
+        padding: 20px;
+        display: flex;
+        justify-content: center; }
+        .super__container .modal-validation__wrapper .storedImage__wrapper svg {
+          max-height: 250px; }
+    .super__container .modal-validation .btn-completed {
+      position: absolute;
+      bottom: 50px;
+      background-color: #e48645;
+      color: #fff;
+      font-size: 32px;
+      border-radius: 15px; }
+  .super__container .content__wrapper .header {
+    height: 100px;
+    background-image: url("../image/bg.jpg");
+    background-position: center 875px;
+    background-size: 1120px;
+    position: relative; }
+    .super__container .content__wrapper .header .sound__wrapper {
+      position: absolute;
+      top: 20px;
+      right: 15px; }
+  .super__container .content__wrapper .content {
+    width: 100%;
+    background-color: #fff;
+    padding-top: 25px; }
+    .super__container .content__wrapper .content .drawing {
+      width: 450px;
+      height: 450px;
+      margin: auto;
+      display: flex;
+      justify-content: center; }
+      .super__container .content__wrapper .content .drawing svg {
+        max-height: 450px; }
+  .super__container .content__wrapper .color-pallete {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%); }
+    .super__container .content__wrapper .color-pallete .color-circle__wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      width: 100px; }
+      .super__container .content__wrapper .color-pallete .color-circle__wrapper .clear {
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .super__container .content__wrapper .color-pallete .color-circle__wrapper .color-circle {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+        cursor: pointer;
+        border-radius: 100%; }
+      .super__container .content__wrapper .color-pallete .color-circle__wrapper #color-input {
+        width: 50px;
+        height: 50px;
+        cursor: pointer; }
+  .super__container .content__wrapper .footer .logo-kewan__wrapper {
+    width: 150px; }
+  .super__container .content__wrapper .footer .logo-kewan {
+    width: 100%; }
+  .super__container .content__wrapper .footer .btn-validasi {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e48645;
+    color: #fff;
+    font-size: 32px;
+    border-radius: 15px; }

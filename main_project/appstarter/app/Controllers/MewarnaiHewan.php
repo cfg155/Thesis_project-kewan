@@ -31,7 +31,6 @@ class MewarnaiHewan extends BaseController
             'dataHewan' => $this->mewarnaiModel->find($id)
         ];
 
-        // d($data);
         return view('mewarnai-hewan-detail', $data);
     }
 
