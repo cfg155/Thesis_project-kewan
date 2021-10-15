@@ -19,14 +19,12 @@ class MewarnaiHewan extends BaseController
 
     public function index()
     {
-
         return view('mewarnai-hewan');
     }
 
     public function detail($id)
     {
 
-        // echo $id;
         $data = [
             'dataHewan' => $this->mewarnaiModel->find($id)
         ];
@@ -37,7 +35,7 @@ class MewarnaiHewan extends BaseController
     public function getData()
     {
         $builder = $this->db->table('mewarnai_hewan');
-        $builder->select('binatang_id,nama_binatang');
+        $builder->select('binatang_id,nama_binatang,gambar_validasi');
         $query = $builder->get();
 
         $result = array();
@@ -45,30 +43,11 @@ class MewarnaiHewan extends BaseController
         foreach ($query->getResultArray() as $data) {
             $result[] = array(
                 "binatang_id" => $data['binatang_id'],
-                "nama_binatang" => $data['nama_binatang']
+                "nama_binatang" => $data['nama_binatang'],
+                "gambar_validasi" => $data['gambar_validasi']
             );
         };
 
         echo json_encode($result);
-
-
-        // echo json_encode($data);
-
-        // // Setup encrypter
-        // $encrypter = \Config\Services::encrypter();
-        // $encryptedData = $encrypter->encrypt($data['nama_binatang']);
-
-        // $encoded = bin2hex(\CodeIgniter\Encryption\Encryption::createKey(32));
-
-        // $encoded = base64_encode($encrypter->encrypt($data['svg_code']));
-
-        // echo $encoded . '<br>';
-
-        // echo $encrypter->decrypt(base64_decode($encoded));
-
-        // // echo $data['nama_binatang'] . '<br>';
-        // // echo $encryptedData . '<br>';
-        // // echo $encrypter->decrypt($encryptedData);
-        // // echo json_encode($encryptedData);
     }
 }

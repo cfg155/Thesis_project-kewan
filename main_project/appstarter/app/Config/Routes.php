@@ -32,9 +32,13 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+// routes to feature meawarnai
 $routes->get('/mewarnai-hewan', 'MewarnaiHewan::index');
 $routes->get('/mewarnai-hewan-detail/(:segment)', 'MewarnaiHewan::detail/$1');
 
+// routes to tebak hewan
+$routes->get('tebak-hewan', 'TebakHewan::index');
 
 /*
  * --------------------------------------------------------------------
