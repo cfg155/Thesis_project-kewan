@@ -24,7 +24,7 @@
         </div>
         <!-- content -->
         <div class="content">
-            <h1 class="text-center my-5">Pilih Binatang</h1>
+            <h1 class="text-center my-5">Mewarnai Hewan</h1>
             <div class="list-binatang d-flex justify-content-center row"></div>
         </div>
         <!-- Footer -->

@@ -27,7 +27,7 @@
                     <a href="/tebak-hewan" class="btn btn-primary">Tebak Hewan</a>
                 </div>
                 <div class="koleksi-hewan col-md-4 d-flex justify-content-center">
-                    <a class="btn btn-primary">Koleksi Hewan</a>
+                    <a href="/koleksi" class="btn btn-primary">Koleksi Hewan</a>
                 </div>
             </div>
         </div>

@@ -1,0 +1,64 @@
+.header {
+  height: 100px;
+  background-image: url("../image/bg.jpg");
+  background-position: center 875px;
+  background-size: 1120px;
+  position: relative; }
+  .header .sound__wrapper {
+    position: absolute;
+    top: 20px;
+    right: 15px; }
+
+.content {
+  min-height: calc(100vh - (100px + 100px)); }
+
+.footer {
+  height: 100px;
+  position: absolute;
+  bottom: 0; }
+  .footer .logo-kewan__wrapper {
+    width: 150px; }
+  .footer .logo-kewan {
+    width: 100%; }
+
+.content__wrapper .content {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center; }
+  .content__wrapper .content .left-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 20px; }
+    .content__wrapper .content .left-content .scene {
+      width: 400px;
+      height: 400px;
+      margin: auto; }
+    .content__wrapper .content .left-content .animal-photo {
+      display: flex;
+      justify-content: center; }
+      .content__wrapper .content .left-content .animal-photo .box {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        margin: 10px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center; }
+  .content__wrapper .content .right-content .youtube__wrapper {
+    width: 90%;
+    height: 340px;
+    margin: auto;
+    padding-bottom: 50px; }
+    .content__wrapper .content .right-content .youtube__wrapper iframe {
+      width: 100%;
+      height: 100%; }
+  .content__wrapper .content .right-content .animal-description {
+    width: 95%;
+    margin: auto; }
+    .content__wrapper .content .right-content .animal-description--header {
+      display: flex; }
+      .content__wrapper .content .right-content .animal-description--header * {
+        margin-right: 5px; }
+    .content__wrapper .content .right-content .animal-description p {
+      font-size: 24px; }
