@@ -24,22 +24,28 @@
                 <img src="./image/kewan-logo.png" alt="">
             </div>
             <div class="navigation row">
-                <div class="mewarnai-hewan col-md-4 d-flex justify-content-center">
+                <div class="mewarnai-hewan col-md-3 d-flex justify-content-center">
                     <a href="/mewarnai-hewan" class="feature">
                         <img src="./image/Group 13.png" alt="">
                         <h1><b>Mewarnai Hewan</b></h1>
                     </a>
                 </div>
-                <div class="tebak-hewan col-md-4 d-flex justify-content-center">
+                <div class="tebak-hewan col-md-3 d-flex justify-content-center">
                     <a href="/tebak-hewan" class="feature">
                         <img src="./image/Group 15.png" alt="">
                         <h1><b>Tebak Hewan</b></h1>
                     </a>
                 </div>
-                <div class="koleksi-hewan col-md-4 d-flex justify-content-center">
+                <div class="koleksi-hewan col-md-3 d-flex justify-content-center">
                     <a href="/koleksi" class="feature">
                         <img src="./image/Group 16.png" alt="">
                         <h1><b>Koleksi</b></h1>
+                    </a>
+                </div>
+                <div class="koleksi-hewan col-md-3 d-flex justify-content-center">
+                    <a href="#" class="feature">
+                        <img src="" alt="">
+                        <h1><b>Quiz</b></h1>
                     </a>
                 </div>
             </div>
