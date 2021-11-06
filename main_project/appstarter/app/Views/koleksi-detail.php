@@ -15,6 +15,12 @@
 
 </head>
 
+<style>
+    .btn {
+        font-size: 24px;
+    }
+</style>
+
 <body>
     <div class="content__wrapper">
         <!-- Header -->
@@ -41,10 +47,32 @@
                 <div class="animal-description">
                     <div class="animal-description--header">
                         <h1><?= $dataHewan['nama_binatang'] ?></h1>
-                        <button>Suara Hewan</button>
-                        <button>Suara Paragraf</button>
+                        <button class="btn btn-light">Suara Hewan</button>
+                        <button class="btn btn-primary">Suara Paragraf</button>
                     </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque dolorem saepe earum debitis odit beatae ea architecto, corrupti laboriosam quisquam iure excepturi, veritatis exercitationem consequuntur tempore cupiditate laudantium reiciendis vitae expedita molestiae nemo non voluptatibus? Est deleniti pariatur quis ipsa eveniet aspernatur, nisi asperiores suscipit quae. Nobis excepturi eos, blanditiis atque non iusto dolores velit maxime reiciendis adipisci nulla repudiandae nesciunt et earum quos accusamus? Possimus sequi amet, sunt excepturi laborum suscipit totam vero, dolorum doloremque inventore, in facilis harum. Veritatis cum soluta sed temporibus excepturi, delectus omnis est? Quo molestiae autem praesentium minus accusantium error, ea ullam necessitatibus at!</p>
+                    <table class="table" style="font-size: 24px;">
+                        <tr>
+                            <th>Makanan</th>
+                            <td><?= $dataHewan['makanan'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tempat Tinggal</th>
+                            <td><?= $dataHewan['tempat_tinggal'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Hewan</th>
+                            <td><?= $dataHewan['jenis_hewan'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Berkembang Biak dengan</th>
+                            <td><?= $dataHewan['berkembang_biak'] ?></td>
+                        </tr>
+                    </table>
+                    <div class="fun-fact">
+                        <h2><strong>Fakta tentang <?= $dataHewan['nama_binatang'] ?>!</strong></h2>
+                        <p class="fact-desc" style="font-size: 24px;"></p>
+                        <button class="btn btn-light btn-next">Selanjutnya</button>
+                    </div>
                 </div>
             </div>
 
@@ -76,4 +104,29 @@
     box.forEach((box, idx) => {
         box.style.backgroundImage = `url(../image/koleksi/${binatangId}/${getAnimalArray[idx]})`
     })
+
+    // get data with AJAX
+    $.get("<?= base_url('/Koleksi/getFunFact') ?>", function(data, status) {
+        let parsedJSON = JSON.parse(data)
+        console.log(parsedJSON)
+
+        let getFunFact = []
+        console.log(parsedJSON[0].fun_fact)
+
+        for (let i = 0; i < parsedJSON.length; i++) {
+            if (parsedJSON[i].binatang_id == binatangId) {
+                getFunFact.push(parsedJSON[i].fun_fact)
+            }
+        }
+
+        let counter = 0
+        $('.fact-desc').html(getFunFact[counter])
+
+        $('.btn-next').click(function() {
+            counter += 1
+            if (counter == getFunFact.length - 1) counter == 0
+
+            $('.fact-desc').html(getFunFact[counter])
+        })
+    });
 </script>

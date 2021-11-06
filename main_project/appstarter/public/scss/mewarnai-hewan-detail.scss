@@ -65,53 +65,84 @@
   .content__wrapper {
     .content {
       width: 100%;
-      background-color: #fff;
+      background-color: transparent;
       padding-top: 25px;
 
+      @media screen and (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+      }
+
       .drawing {
-        width: 450px;
-        height: 450px;
+        width: 600px;
+        height: 600px;
         margin: auto;
         display: flex;
         justify-content: center;
+        flex-direction: column;
+
+        .btn-validasi__wrapper {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          padding: 40px 0;
+          z-index: 20;
+
+          .btn-validasi {
+            background-color: #e48645;
+            color: #fff;
+            font-size: 32px;
+            border-radius: 15px;
+          }
+        }
 
         svg {
           max-height: 450px;
         }
       }
-    }
 
-    .color-pallete {
-      position: absolute;
-      right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
+      .color-pallete {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
 
-      .color-circle__wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        width: 100px;
-
-        .clear {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        @media screen and (max-width: 900px) {
+          position: inherit;
+          padding-top: 200px;
         }
 
-        .color-circle {
-          width: 50px;
-          height: 50px;
-          border: 1px solid #000;
-          cursor: pointer;
-          border-radius: 100%;
-        }
+        .color-circle__wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap: 10px;
+          grid-row-gap: 10px;
+          width: 100px;
 
-        #color-input {
-          width: 50px;
-          height: 50px;
-          cursor: pointer;
+          @media screen and (max-width: 900px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+          }
+
+          .clear {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .color-circle {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            cursor: pointer;
+            border-radius: 100%;
+          }
+
+          #color-input {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -123,16 +154,6 @@
 
       .logo-kewan {
         width: 100%;
-      }
-
-      .btn-validasi {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #e48645;
-        color: #fff;
-        font-size: 32px;
-        border-radius: 15px;
       }
     }
   }

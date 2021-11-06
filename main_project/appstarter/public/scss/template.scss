@@ -4,16 +4,43 @@
   background-position: center 875px;
   background-size: 1120px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    margin: 0 10px;
+    font-size: 24px;
+  }
+
+  .back__wrapper {
+    img {
+      width: 48px;
+    }
+  }
 
   .sound__wrapper {
-    position: absolute;
-    top: 20px;
-    right: 15px;
+    button {
+      border: 1px solid #ffde59;
+      background-color: #fff;
+    }
   }
 }
 
 .content {
   min-height: calc(100vh - (100px + 100px));
+}
+
+@font-face {
+  font-family: KidsCorner;
+  src: url("../font/KidsCorner-Regular-1.otf");
+}
+
+.content__wrapper {
+  background-image: url("../image/Background.png");
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  font-family: KidsCorner;
 }
 
 .footer {

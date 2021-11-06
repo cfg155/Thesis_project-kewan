@@ -3,14 +3,31 @@
   background-image: url("../image/bg.jpg");
   background-position: center 875px;
   background-size: 1120px;
-  position: relative; }
-  .header .sound__wrapper {
-    position: absolute;
-    top: 20px;
-    right: 15px; }
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .header * {
+    margin: 0 10px;
+    font-size: 24px; }
+  .header .back__wrapper img {
+    width: 48px; }
+  .header .sound__wrapper button {
+    border: 1px solid #ffde59;
+    background-color: #fff; }
 
 .content {
   min-height: calc(100vh - (100px + 100px)); }
+
+@font-face {
+  font-family: KidsCorner;
+  src: url("../font/KidsCorner-Regular-1.otf"); }
+
+.content__wrapper {
+  background-image: url("../image/Background.png");
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  font-family: KidsCorner; }
 
 .footer {
   height: 100px;
@@ -23,21 +40,23 @@
 
 .content__wrapper {
   position: relative; }
-  .content__wrapper .modal-check__wrapper .modal-check {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background-color: #fff;
-    border-radius: 20px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -500%); }
-    .content__wrapper .modal-check__wrapper .modal-check .msg-panel {
-      height: 100%;
-      display: grid;
-      place-items: center;
-      padding: 20px; }
+  .content__wrapper .modal-check__wrapper {
+    font-size: 24px; }
+    .content__wrapper .modal-check__wrapper .modal-check {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background-color: #fff;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -500%); }
+      .content__wrapper .modal-check__wrapper .modal-check .msg-panel {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 20px; }
   .content__wrapper .content {
     display: flex;
     flex-direction: column;
@@ -46,8 +65,8 @@
       display: flex;
       justify-content: center; }
     .content__wrapper .content .image__wrapper {
-      width: 400px;
-      height: 400px;
+      width: 500px;
+      height: 500px;
       position: relative; }
     .content__wrapper .content .image__wrapper img {
       width: 100%;
@@ -64,9 +83,15 @@
     .content__wrapper .content .box {
       cursor: pointer; }
     .content__wrapper .content .hint__wrapper {
+      font-size: 24px;
       display: flex;
       justify-content: center;
       margin: 15px 0; }
-    .content__wrapper .content .answer__wrapper .answer {
-      display: flex;
-      justify-content: center; }
+    .content__wrapper .content .answer__wrapper {
+      font-size: 24px; }
+      .content__wrapper .content .answer__wrapper .answer {
+        display: flex;
+        justify-content: center; }
+        .content__wrapper .content .answer__wrapper .answer .answer-item {
+          width: 200px;
+          margin: 15px; }

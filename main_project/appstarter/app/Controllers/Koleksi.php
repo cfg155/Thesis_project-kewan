@@ -26,5 +26,14 @@ class Koleksi extends BaseController
         ];
 
         return view('koleksi-detail', $result);
+        // echo $result;
+    }
+
+    public function getFunFact()
+    {
+        $table = $this->db->table('fun-fact');
+        $query = $table->select('*')->get();
+
+        echo json_encode($query->getResultArray());
     }
 }

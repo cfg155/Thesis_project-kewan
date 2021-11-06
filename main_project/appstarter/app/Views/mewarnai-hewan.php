@@ -17,22 +17,15 @@
 <body>
     <div class="content__wrapper">
         <!-- Header -->
-        <div class="header">
-            <div class="sound__wrapper">
-                <button>Sound On</button>
-            </div>
-        </div>
+        <?= $this->include('component/header'); ?>
+
         <!-- content -->
         <div class="content">
             <h1 class="text-center my-5">Mewarnai Hewan</h1>
             <div class="list-binatang d-flex justify-content-center row"></div>
         </div>
         <!-- Footer -->
-        <div class="footer position-relative">
-            <div class="logo-kewan__wrapper">
-                <img src="/image/kewan-logo.png" alt="" class="logo-kewan">
-            </div>
-        </div>
+        <?= $this->include('component/footer'); ?>
     </div>
 </body>
 

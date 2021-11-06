@@ -3,14 +3,31 @@
   background-image: url("../image/bg.jpg");
   background-position: center 875px;
   background-size: 1120px;
-  position: relative; }
-  .header .sound__wrapper {
-    position: absolute;
-    top: 20px;
-    right: 15px; }
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .header * {
+    margin: 0 10px;
+    font-size: 24px; }
+  .header .back__wrapper img {
+    width: 48px; }
+  .header .sound__wrapper button {
+    border: 1px solid #ffde59;
+    background-color: #fff; }
 
 .content {
   min-height: calc(100vh - (100px + 100px)); }
+
+@font-face {
+  font-family: KidsCorner;
+  src: url("../font/KidsCorner-Regular-1.otf"); }
+
+.content__wrapper {
+  background-image: url("../image/Background.png");
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  font-family: KidsCorner; }
 
 .footer {
   height: 100px;
@@ -68,50 +85,66 @@
       border-radius: 15px; }
   .super__container .content__wrapper .content {
     width: 100%;
-    background-color: #fff;
+    background-color: transparent;
     padding-top: 25px; }
+    @media screen and (max-width: 900px) {
+      .super__container .content__wrapper .content {
+        display: flex;
+        flex-direction: column;
+        justify-items: center; } }
     .super__container .content__wrapper .content .drawing {
-      width: 450px;
-      height: 450px;
+      width: 600px;
+      height: 600px;
       margin: auto;
       display: flex;
-      justify-content: center; }
-      .super__container .content__wrapper .content .drawing svg {
-        max-height: 450px; }
-  .super__container .content__wrapper .color-pallete {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%); }
-    .super__container .content__wrapper .color-pallete .color-circle__wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-gap: 10px;
-      grid-row-gap: 10px;
-      width: 100px; }
-      .super__container .content__wrapper .color-pallete .color-circle__wrapper .clear {
+      justify-content: center;
+      flex-direction: column; }
+      .super__container .content__wrapper .content .drawing .btn-validasi__wrapper {
+        position: relative;
         display: flex;
         justify-content: center;
-        align-items: center; }
-      .super__container .content__wrapper .color-pallete .color-circle__wrapper .color-circle {
-        width: 50px;
-        height: 50px;
-        border: 1px solid #000;
-        cursor: pointer;
-        border-radius: 100%; }
-      .super__container .content__wrapper .color-pallete .color-circle__wrapper #color-input {
-        width: 50px;
-        height: 50px;
-        cursor: pointer; }
+        padding: 40px 0;
+        z-index: 20; }
+        .super__container .content__wrapper .content .drawing .btn-validasi__wrapper .btn-validasi {
+          background-color: #e48645;
+          color: #fff;
+          font-size: 32px;
+          border-radius: 15px; }
+      .super__container .content__wrapper .content .drawing svg {
+        max-height: 450px; }
+    .super__container .content__wrapper .content .color-pallete {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%); }
+      @media screen and (max-width: 900px) {
+        .super__container .content__wrapper .content .color-pallete {
+          position: inherit;
+          padding-top: 200px; } }
+      .super__container .content__wrapper .content .color-pallete .color-circle__wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        width: 100px; }
+        @media screen and (max-width: 900px) {
+          .super__container .content__wrapper .content .color-pallete .color-circle__wrapper {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; } }
+        .super__container .content__wrapper .content .color-pallete .color-circle__wrapper .clear {
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+        .super__container .content__wrapper .content .color-pallete .color-circle__wrapper .color-circle {
+          width: 50px;
+          height: 50px;
+          border: 1px solid #000;
+          cursor: pointer;
+          border-radius: 100%; }
+        .super__container .content__wrapper .content .color-pallete .color-circle__wrapper #color-input {
+          width: 50px;
+          height: 50px;
+          cursor: pointer; }
   .super__container .content__wrapper .footer .logo-kewan__wrapper {
     width: 150px; }
   .super__container .content__wrapper .footer .logo-kewan {
     width: 100%; }
-  .super__container .content__wrapper .footer .btn-validasi {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e48645;
-    color: #fff;
-    font-size: 32px;
-    border-radius: 15px; }

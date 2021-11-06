@@ -25,21 +25,20 @@
                 <div class="ref-image__wrapper">
                     <img src="<?= $dataHewan['gambar_validasi'] ?>" alt="">
                 </div>
-                <button class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></button>
+                <a href="" class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></a>
             </div>
         </div>
 
         <div class="content__wrapper" style="position: relative;">
-            <div class="header">
-                <h1 class="text-center" style="height: 100%; display: grid; align-items: center;width: 200px;background-color: #fff; margin: auto;border-radius: 50%;"><?= $dataHewan['nama_binatang'] ?></h1>
+            <!-- Header -->
+            <?= $this->include('component/header'); ?>
 
-                <div class="sound__wrapper">
-                    <button>Sound On</button>
-                </div>
-            </div>
             <div class="content">
                 <div class="drawing">
                     <?= $dataHewan['svg_code'] ?>
+                    <div class="btn-validasi__wrapper">
+                        <button class="btn btn-validasi">Selesai</button>
+                    </div>
                 </div>
                 <div class="color-pallete">
                     <div class="color-circle__wrapper">
@@ -57,9 +56,6 @@
                 <div class="logo-kewan__wrapper">
                     <img src="/image/kewan-logo.png" alt="" class="logo-kewan">
                 </div>
-                <div class="btn-validasi__wrapper">
-                    <button class="btn btn-validasi">Selesai</button>
-                </div>
             </div>
         </div>
     </div>
@@ -70,6 +66,10 @@
 </html>
 
 <script>
+    let getBinatangId = <?= $dataHewan['binatang_id'] ?>
+
+    document.querySelector('.btn-completed').href = `<?= base_url('koleksi-detil/') ?>/${getBinatangId}`
+
     function appendColor(color) {
         let divColor = ''
         color.forEach(color => {

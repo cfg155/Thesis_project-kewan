@@ -43,12 +43,27 @@
 
             <div class="answer__wrapper">
                 <h2 class="text-center">Pilihan Jawaban</h2>
-                <div class="answer">
-                    <button id="ans1">Beruang</button>
-                    <button id="ans2">Gajah</button>
-                    <button id="ans3">Kuda</button>
-                    <button id="ans4">Rusa</button>
-                    <button id="ans5">Singa</button>
+                <div class="answer row">
+                    <div class="answer-item" class="col-md-2">
+                        <button id="ans1" class="btn-answer">Singa</button>
+                        <span>Suara</span>
+                    </div>
+                    <div class="answer-item" class="col-md-2">
+                        <button id="ans2" class="btn-answer">Beruang</button>
+                        <span>Suara</span>
+                    </div>
+                    <div class="answer-item" class="col-md-2">
+                        <button id="ans3" class="btn-answer">Rusa</button>
+                        <span>Suara</span>
+                    </div>
+                    <div class="answer-item" class="col-md-2">
+                        <button id="ans4" class="btn-answer">Kuda</button>
+                        <span>Suara</span>
+                    </div>
+                    <div class="answer-item" class="col-md-2">
+                        <button id="ans5" class="btn-answer">Gajah</button>
+                        <span>Suara</span>
+                    </div>
                 </div>
             </div>
 
@@ -64,7 +79,7 @@
                     <h1 class="check-msg text-center"></h1>
                     <div class="btn__wrapper">
                         <button class="btn--reload">Coba lagi</button>
-                        <button class="btn--pelajari">Pelajari lebih lanjut</button>
+                        <a href="" class="btn--pelajari">Pelajari lebih lanjut</a>
                     </div>
                 </div>
             </div>
@@ -94,13 +109,17 @@
                     let randomImageIdx = Math.round(Math.random() * (getImage.length - 1))
                     let imagePath = `image/tebak-hewan/${animalId+1}/${getImage[randomImageIdx]}`
 
+
                     // assign answer
                     $(`#ans${animalId+1}`).addClass('correct')
+                    document.querySelector('.btn--pelajari').href = `<?= base_url('koleksi-detil/') ?>/${animalId+1}`
 
                     return imagePath
                 }
 
                 let randomAnimalNumber = Math.floor(Math.random() * data.length) + 1
+
+                console.log(getRandomImage(randomAnimalNumber - 1))
 
                 let imgContainer = ` <img src="${getRandomImage(randomAnimalNumber - 1)}" alt="" class="image">`
 
@@ -161,18 +180,27 @@
 
                 generateTimes(2)
 
-                let btnAnswer = document.querySelector('.answer').children
+                let btnAnswer = document.querySelectorAll('.answer .btn-answer')
                 console.log(btnAnswer)
+
+                let finalAnswer
+                for (let i = 0; i < btnAnswer.length; i++) {
+                    if (btnAnswer[i].classList.contains('correct')) {
+                        finalAnswer = btnAnswer[i].innerHTML
+                    }
+                }
+
+                console.log(finalAnswer)
 
                 for (let i = 0; i < btnAnswer.length; i++) {
                     btnAnswer[i].addEventListener('click', () => {
                         document.querySelector('.modal-check').style.transform = 'translate(-50%, -50%)'
                         document.querySelector('.modal-check').style.transition = 'all 1s'
 
-                        if ($(`#ans${i+1}`).attr('class') == 'correct') {
-                            $('.check-msg').html('Horee kamu benar')
+                        if (btnAnswer[i].classList.contains('correct')) {
+                            $('.check-msg').html(`Horee kamu benar jawabannya adalah <b style="color:red">${btnAnswer[i].innerHTML}</b>`)
                         } else {
-                            $('.check-msg').html('Yah kamu kurang beruntung, Yuk coba lagi')
+                            $('.check-msg').html(`Yah kamu kurang beruntung jawabannya adalah <b style="color:red">${finalAnswer}</b>, Yuk coba lagi`)
                         }
                     })
                 }
