@@ -17,23 +17,31 @@ class Koleksi extends BaseController
 
     public function koleksiDetil($id)
     {
-        $id = $id;
-        $table = $this->db->table('koleksi');
-        $query = $table->select('*')->where('binatang_id = ' . $id)->get();
+        $table = $this->db->table('list_binatang');
+        $query = $table->select('*')->where('list_binatang_id = ' . $id)->get();
 
         $result = [
             "dataHewan" => $query->getResultArray()[0]
         ];
 
+        d($result);
+
         return view('koleksi-detail', $result);
-        // echo $result;
     }
 
-    public function getFunFact()
+    public function koleksiDetailTable($id)
     {
-        $table = $this->db->table('fun-fact');
-        $query = $table->select('*')->get();
+        // table fun fact
+        $table_funFact = $this->db->table('fun_fact');
+        $query_funFact = $table_funFact->select('fun_fact_id, fun_fact')->where('list_binatang_id = ' . $id)->get();
 
-        echo json_encode($query->getResultArray());
+        // table foto_hewan
+        $table_fotoHewan = $this->db->table('foto_hewan');
+        $query_fotoHewan = $table_fotoHewan->select('foto_hewan_id, nama_foto')->where('list_binatang_id = ' . $id)->get();
+
+        echo json_encode([
+            'fun_fact_list' => $query_funFact->getResultArray(),
+            'foto_hewan_list' => $query_fotoHewan->getResultArray()
+        ]);
     }
 }

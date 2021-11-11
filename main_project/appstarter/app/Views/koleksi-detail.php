@@ -57,15 +57,15 @@
                         </tr>
                         <tr>
                             <th>Tempat Tinggal</th>
-                            <td><?= $dataHewan['tempat_tinggal'] ?></td>
+                            <td><?= $dataHewan['habitat'] ?></td>
                         </tr>
                         <tr>
                             <th>Jenis Hewan</th>
-                            <td><?= $dataHewan['jenis_hewan'] ?></td>
+                            <td><?= $dataHewan['jenis_pemakan'] ?></td>
                         </tr>
                         <tr>
                             <th>Berkembang Biak dengan</th>
-                            <td><?= $dataHewan['berkembang_biak'] ?></td>
+                            <td><?= $dataHewan['cara_berkembang_biak'] ?></td>
                         </tr>
                     </table>
                     <div class="fun-fact">
@@ -92,41 +92,31 @@
 </html>
 
 <script>
-    let binatangId = <?= $dataHewan['binatang_id'] ?>
-
-    let animal = '<?= $dataHewan['gambar_array'] ?>'
-
-    let getAnimalArray = animal.split(',')
-
-    console.log(binatangId)
-
-    let box = document.querySelectorAll('.box')
-    box.forEach((box, idx) => {
-        box.style.backgroundImage = `url(../image/koleksi/${binatangId}/${getAnimalArray[idx]})`
-    })
+    let binatangId = <?= $dataHewan['list_binatang_id'] ?>
 
     // get data with AJAX
-    $.get("<?= base_url('/Koleksi/getFunFact') ?>", function(data, status) {
+    $.get("<?= base_url('/Koleksi/koleksiDetailTable') ?>" + '/' + binatangId, function(data, status) {
+
         let parsedJSON = JSON.parse(data)
         console.log(parsedJSON)
 
-        let getFunFact = []
-        console.log(parsedJSON[0].fun_fact)
-
-        for (let i = 0; i < parsedJSON.length; i++) {
-            if (parsedJSON[i].binatang_id == binatangId) {
-                getFunFact.push(parsedJSON[i].fun_fact)
-            }
-        }
-
         let counter = 0
-        $('.fact-desc').html(getFunFact[counter])
+
+        $('.fact-desc').html(parsedJSON.fun_fact_list[counter].fun_fact)
 
         $('.btn-next').click(function() {
             counter += 1
-            if (counter == getFunFact.length - 1) counter == 0
 
-            $('.fact-desc').html(getFunFact[counter])
+            if (counter == parsedJSON.fun_fact_list.length - 1) {
+                counter = 0
+            }
+
+            $('.fact-desc').html(parsedJSON.fun_fact_list[counter].fun_fact)
+        })
+
+        let box = document.querySelectorAll('.box')
+        box.forEach((box, idx) => {
+            box.style.backgroundImage = `url(../image/tebak-hewan/${parsedJSON.foto_hewan_list[idx].nama_foto})`
         })
     });
 </script>

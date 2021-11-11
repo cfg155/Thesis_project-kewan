@@ -60,6 +60,19 @@
       font-size: 32px;
       border-radius: 15px;
     }
+
+    .score__wrapper {
+      position: absolute;
+      bottom: 250px;
+      right: 220px;
+      font-size: 24px;
+      background-color: #fff;
+    }
+
+    .score {
+      font-weight: bold;
+      color: #e48645;
+    }
   }
 
   .content__wrapper {

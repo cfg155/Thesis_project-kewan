@@ -12,9 +12,11 @@
     font-size: 24px; }
   .header .back__wrapper img {
     width: 48px; }
-  .header .sound__wrapper button {
-    border: 1px solid #ffde59;
-    background-color: #fff; }
+  .header .right__wrapper {
+    display: flex; }
+    .header .right__wrapper .sound__wrapper button {
+      border: 1px solid #ffde59;
+      background-color: #fff; }
 
 .content {
   min-height: calc(100vh - (100px + 100px)); }
@@ -83,6 +85,15 @@
       color: #fff;
       font-size: 32px;
       border-radius: 15px; }
+    .super__container .modal-validation .score__wrapper {
+      position: absolute;
+      bottom: 250px;
+      right: 220px;
+      font-size: 24px;
+      background-color: #fff; }
+    .super__container .modal-validation .score {
+      font-weight: bold;
+      color: #e48645; }
   .super__container .content__wrapper .content {
     width: 100%;
     background-color: transparent;

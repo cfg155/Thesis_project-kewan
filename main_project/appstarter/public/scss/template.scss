@@ -19,10 +19,13 @@
     }
   }
 
-  .sound__wrapper {
-    button {
-      border: 1px solid #ffde59;
-      background-color: #fff;
+  .right__wrapper {
+    display: flex;
+    .sound__wrapper {
+      button {
+        border: 1px solid #ffde59;
+        background-color: #fff;
+      }
     }
   }
 }

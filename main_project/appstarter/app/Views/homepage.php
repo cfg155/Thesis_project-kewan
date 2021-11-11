@@ -19,6 +19,15 @@
         <!-- Header -->
         <?= $this->include('component/header'); ?>
 
+        <?php
+        if ($msg != null) { ?>
+            <script>
+                alert('<?= $msg ?>')
+                localStorage.setItem('pengguna_id', <?= $pengguna_id ?>)
+                window.location.replace('/')
+            </script>
+        <?php } ?>
+
         <div class="content">
             <div class="logo">
                 <img src="./image/kewan-logo.png" alt="">

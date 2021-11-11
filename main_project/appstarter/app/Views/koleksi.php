@@ -40,30 +40,28 @@
 
 <script>
     $('document').ready(function() {
-        let linkContainer = ''
         $.ajax({
-            url: `<?= site_url('MewarnaiHewan/getData') ?>`,
+            url: `<?= site_url('mewarnaiHewan/mewarnaiHewanGetData') ?>`,
             dataType: 'json',
             success: function(data, status, xhr) {
+
+                console.log(data)
+                let linkItem = ''
                 for (let i = 0; i < data.length; i++) {
-                    let linkItem =
+                    linkItem +=
                         `
-                    <div class="card" class="item col-md-3" style="width: 18rem;">
-                        <a href="/koleksi-detil/${data[i].binatang_id}">
-                            <img src="${data[i].gambar_validasi}" class="card-img-top image-hewan" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">${data[i].nama_binatang}</h5>
-                            </div>
-                        </a>
-                    </div>
-                    `
-
-                    linkContainer += linkItem
-
+                        <div class="card item col-md-3 my-3" style="width: 18rem;">
+                            <a href="/koleksi-detil/${data[i].list_binatang_id}">
+                                <img src="${data[i].foto_referensi}" class="card-img-top image-hewan" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">${data[i].nama_binatang}</h5>
+                                </div>
+                            </a>
+                        </div>
+                        `
                 }
-                console.log(linkContainer)
-                $('.list-binatang').append(linkContainer)
 
+                $('.list-binatang').append(linkItem)
             }
         })
 

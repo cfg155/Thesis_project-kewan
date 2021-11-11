@@ -35,10 +35,14 @@ $routes->get('/', 'Home::index');
 
 // routes to feature meawarnai
 $routes->get('/mewarnai-hewan', 'MewarnaiHewan::index');
-$routes->get('/mewarnai-hewan-detail/(:segment)', 'MewarnaiHewan::detail/$1');
+$routes->get('/mewarnai-hewan-list-binatang/(:segment)', 'MewarnaiHewan::mewarnaiHewanListBinatang/$1');
+$routes->get('/mewarnai-hewan-detail/(:segment)', 'MewarnaiHewan::mewarnaiHewanDetail/$1');
 
 // routes to tebak hewan
 $routes->get('/tebak-hewan', 'TebakHewan::index');
+
+// routes to tebak hewan
+$routes->get('/masuk-akun', 'Pengguna::registrasi');
 
 // routes to koleksi 
 $routes->get('/koleksi', 'Koleksi::ListBinatang');

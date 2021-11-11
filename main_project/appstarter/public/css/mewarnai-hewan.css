@@ -12,9 +12,11 @@
     font-size: 24px; }
   .header .back__wrapper img {
     width: 48px; }
-  .header .sound__wrapper button {
-    border: 1px solid #ffde59;
-    background-color: #fff; }
+  .header .right__wrapper {
+    display: flex; }
+    .header .right__wrapper .sound__wrapper button {
+      border: 1px solid #ffde59;
+      background-color: #fff; }
 
 .content {
   min-height: calc(100vh - (100px + 100px)); }

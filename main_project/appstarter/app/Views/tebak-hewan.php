@@ -17,11 +17,8 @@
 <body>
     <div class="content__wrapper">
         <!-- Header -->
-        <div class="header">
-            <div class="sound__wrapper">
-                <button>Sound On</button>
-            </div>
-        </div>
+        <?= $this->include('component/header'); ?>
+
         <!-- content -->
         <div class="content">
             <h1 class="text-center">Hewan apakah ini?</h1>
@@ -77,6 +74,7 @@
             <div class="modal-check">
                 <div class="msg-panel">
                     <h1 class="check-msg text-center"></h1>
+                    <h2>Nilai : <span class="nilai"></span></h2>
                     <div class="btn__wrapper">
                         <button class="btn--reload">Coba lagi</button>
                         <a href="" class="btn--pelajari">Pelajari lebih lanjut</a>
@@ -97,124 +95,112 @@
 </html>
 
 <script>
-    function fetchData() {
-        let linkContainer = ''
-        $.ajax({
-            url: `<?= site_url('TebakHewan/getData') ?>`,
-            dataType: 'json',
-            success: function(data, status, xhr) {
-                // to get random image
-                function getRandomImage(animalId) {
-                    let getImage = data[animalId].image_array.split(',')
-                    let randomImageIdx = Math.round(Math.random() * (getImage.length - 1))
-                    let imagePath = `image/tebak-hewan/${animalId+1}/${getImage[randomImageIdx]}`
+    let score = 100
+    let imgContainer = ` <img src="image/tebak-hewan/<?= $data['nama_foto'] ?>" alt="" class="image">`
 
+    $('.image__wrapper').append(imgContainer)
 
-                    // assign answer
-                    $(`#ans${animalId+1}`).addClass('correct')
-                    document.querySelector('.btn--pelajari').href = `<?= base_url('koleksi-detil/') ?>/${animalId+1}`
+    let imageWrapper = document.querySelector('.image__wrapper')
+    let image = document.querySelector('.image')
+    let boxWrapper = document.querySelector('.box__wrapper')
+    let box = document.querySelectorAll('.box')
 
-                    return imagePath
-                }
+    let boxSize = imageWrapper.clientWidth / 3
 
-                let randomAnimalNumber = Math.floor(Math.random() * data.length) + 1
+    box.forEach(box => {
+        box.style.width = `${boxSize}px`
+        box.style.height = `${boxSize}px`
+    })
 
-                console.log(getRandomImage(randomAnimalNumber - 1))
+    // revealed array box
+    let revealedBox = []
 
-                let imgContainer = ` <img src="${getRandomImage(randomAnimalNumber - 1)}" alt="" class="image">`
+    function checkNumber(number) {
+        if (revealedBox.includes(number)) return true
 
-                $('.image__wrapper').append(imgContainer)
+        revealedBox.push(number)
 
-                let imageWrapper = document.querySelector('.image__wrapper')
-                let image = document.querySelector('.image')
-                let boxWrapper = document.querySelector('.box__wrapper')
-                let box = document.querySelectorAll('.box')
+        // sort array
+        revealedBox.sort(function(a, b) {
+            return a - b
+        })
 
-                let boxSize = imageWrapper.clientWidth / 3
+        // remove box
+        box[number].style.backgroundColor = 'transparent'
+        return false
+    }
 
-                box.forEach(box => {
-                    box.style.width = `${boxSize}px`
-                    box.style.height = `${boxSize}px`
-                })
+    function generateRandomNumber() {
+        let tmpNum
 
-                // revealed array box
-                let revealedBox = []
+        if (revealedBox.length == 9) return;
 
-                function checkNumber(number) {
-                    if (revealedBox.includes(number)) return true
+        do {
+            tmpNum = Math.floor(Math.random() * 9)
+        } while (checkNumber(tmpNum))
+    }
 
-                    revealedBox.push(number)
+    function generateTimes(times) {
+        for (let i = 0; i < times; i++) {
+            generateRandomNumber()
+        }
+    }
 
-                    // sort array
-                    revealedBox.sort(function(a, b) {
-                        return a - b
-                    })
+    let btnHint = document.querySelector('.btn--hint')
+    let petunjukCount = 1
+    document.querySelector('.hint__wrapper').addEventListener('click', () => {
+        score -= 10
+        if (score <= 50) {
+            score = 60
+        }
 
-                    // remove box
-                    box[number].style.backgroundColor = 'transparent'
-                    return false
-                }
+        generateTimes(2)
+        document.querySelector('.petunjuk').innerHTML = `Kalimat Petunjuk ${++petunjukCount}`
+    })
 
-                function generateRandomNumber() {
-                    let tmpNum
+    generateTimes(2)
 
-                    if (revealedBox.length == 9) return;
+    let btnAnswer = document.querySelectorAll('.answer .btn-answer')
 
-                    do {
-                        tmpNum = Math.floor(Math.random() * 9)
-                    } while (checkNumber(tmpNum))
-                }
+    for (let i = 0; i < btnAnswer.length; i++) {
+        btnAnswer[i].addEventListener('click', () => {
+            document.querySelector('.modal-check').style.transform = 'translate(-50%, -50%)'
+            document.querySelector('.modal-check').style.transition = 'all 1s'
 
-                function generateTimes(times) {
-                    for (let i = 0; i < times; i++) {
-                        generateRandomNumber()
-                    }
-                }
+            let correctAnswer = '<?= $data['nama_binatang'] ?>'
 
-                let btnHint = document.querySelector('.btn--hint')
-                let petunjukCount = 1
-                document.querySelector('.hint__wrapper').addEventListener('click', () => {
-                    generateTimes(2)
-                    document.querySelector('.petunjuk').innerHTML = `Kalimat Petunjuk ${++petunjukCount}`
-                })
+            if (btnAnswer[i].innerHTML == correctAnswer) {
+                $('.check-msg').html(`Horee kamu benar jawabannya adalah <b style="color:red">${btnAnswer[i].innerHTML}</b>`)
+                $('.nilai').html(score)
+            } else {
+                score = 0
 
-                generateTimes(2)
+                $('.check-msg').html(`Yah kamu kurang beruntung jawabannya adalah <b style="color:red">${correctAnswer}</b>, Yuk coba lagi`)
 
-                let btnAnswer = document.querySelectorAll('.answer .btn-answer')
-                console.log(btnAnswer)
-
-                let finalAnswer
-                for (let i = 0; i < btnAnswer.length; i++) {
-                    if (btnAnswer[i].classList.contains('correct')) {
-                        finalAnswer = btnAnswer[i].innerHTML
-                    }
-                }
-
-                console.log(finalAnswer)
-
-                for (let i = 0; i < btnAnswer.length; i++) {
-                    btnAnswer[i].addEventListener('click', () => {
-                        document.querySelector('.modal-check').style.transform = 'translate(-50%, -50%)'
-                        document.querySelector('.modal-check').style.transition = 'all 1s'
-
-                        if (btnAnswer[i].classList.contains('correct')) {
-                            $('.check-msg').html(`Horee kamu benar jawabannya adalah <b style="color:red">${btnAnswer[i].innerHTML}</b>`)
-                        } else {
-                            $('.check-msg').html(`Yah kamu kurang beruntung jawabannya adalah <b style="color:red">${finalAnswer}</b>, Yuk coba lagi`)
-                        }
-                    })
-                }
-
-                function btnReload() {
-                    $('.btn--reload').on('click', function() {
-                        location.reload()
-                    })
-                }
-
-                btnReload()
+                $('.nilai').html(score)
             }
+
+            let fetchURL = '<?= base_url('TebakHewan/insertNilai') ?>'
+
+            $.post(
+                fetchURL,
+                data = {
+                    pengguna_id: localStorage.getItem('pengguna_id') || null,
+                    nilai: score,
+                    tanggal_tebak_gambar: new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate(),
+                    jam_tebak_gambar: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+                },
+                function(result, status) {
+                    console.log(result)
+                });
         })
     }
 
-    fetchData()
+    function btnReload() {
+        $('.btn--reload').on('click', function() {
+            location.reload()
+        })
+    }
+
+    btnReload()
 </script>

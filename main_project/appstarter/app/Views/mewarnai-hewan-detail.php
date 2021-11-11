@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/mewarnai-hewan-detail.css">
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -20,11 +22,12 @@
                     <button class="btn-arrow-back">Kembali</button>
                 </div>
                 <div class="storedImage__wrapper">
-                    <?= $dataHewan['svg_code'] ?>
+                    <?= $master_table['svg'] ?>
                 </div>
                 <div class="ref-image__wrapper">
-                    <img src="<?= $dataHewan['gambar_validasi'] ?>" alt="">
+                    <img src="<?= $master_table['foto_referensi'] ?>" alt="">
                 </div>
+                <span class="score__wrapper">Nilai : <span class="score">XX</span></span>
                 <a href="" class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></a>
             </div>
         </div>
@@ -35,7 +38,7 @@
 
             <div class="content">
                 <div class="drawing">
-                    <?= $dataHewan['svg_code'] ?>
+                    <?= $master_table['svg'] ?>
                     <div class="btn-validasi__wrapper">
                         <button class="btn btn-validasi">Selesai</button>
                     </div>
@@ -43,12 +46,6 @@
                 <div class="color-pallete">
                     <div class="color-circle__wrapper">
                         <div class="color-circle clear" data-color="white">Hapus</div>
-                        <input type="color" id="color-input" class="color-input">
-                        <div class="color-circle" data-color="#FF0000"></div>
-                        <div class="color-circle" data-color="#008000"></div>
-                        <div class="color-circle" data-color="#FFFFFF"></div>
-                        <div class="color-circle" data-color="#FFFF00"></div>
-                        <div class="color-circle" data-color="#800080"></div>
                     </div>
                 </div>
             </div>
@@ -59,101 +56,146 @@
             </div>
         </div>
     </div>
-
-
 </body>
 
 </html>
 
 <script>
-    let getBinatangId = <?= $dataHewan['binatang_id'] ?>
+    let getBinatangId = <?= $master_table['list_binatang_id'] ?>
 
-    document.querySelector('.btn-completed').href = `<?= base_url('koleksi-detil/') ?>/${getBinatangId}`
+    let currentColor = ''
 
-    function appendColor(color) {
-        let divColor = ''
-        color.forEach(color => {
-            divColor += `<div class="color-circle" data-color="${color}"></div>`
-        })
-        document.querySelector('.color-circle__wrapper').innerHTML += divColor
+    // pass color to js array
+    let colorDivContainer = ''
+    <?php for ($i = 0; $i < count($warna_table); $i++) { ?>
+        colorDivContainer += `<div class="color-circle" data-color="<?= $warna_table[$i]['warna'] ?>"></div>`;
+    <?php } ?>
+
+    $('.color-circle__wrapper').append(colorDivContainer)
+
+    // set color function and set bg on each pallete color
+    colorDivContainer = document.querySelectorAll('.color-circle')
+    for (let i = 0; i < colorDivContainer.length; i++) {
+        colorDivContainer[i].style.backgroundColor = colorDivContainer[i].getAttribute('data-color')
+        colorDivContainer[i].addEventListener('click', getColor)
     }
 
-    appendColor(<?= $dataHewan['warna_array'] ?>)
+    // get color code from pallete
+    function getColor() {
+        currentColor = this.getAttribute('data-color')
+        console.log(currentColor)
+    }
 
-    let colorCircle = document.querySelectorAll('.color-circle')
-    let fillComponent = []
-    let currentColor = '#fff'
+    // document.querySelector('.btn-completed').href = `<?= base_url('koleksi-detil/') ?>/${getBinatangId}`
 
-    let colorInput = document.getElementById('color-input')
+    // assign area fill
+    let counter = 1
+    while (document.querySelector(`.drawing #d${counter}`) != null) {
+        document.querySelector(`.drawing #d${counter}`).addEventListener('click', areaClicked)
+        counter++
+    }
 
-    colorInput.addEventListener('input', () => {
-        currentColor = colorInput.value
+    function areaClicked() {
+        this.style.fill = currentColor
+    }
+
+    document.querySelector('.btn-validasi').addEventListener('click', () => {
+        // set function when clicking selesai
+
+        // fill color to storedSvg div
+        fillStoredImage()
+
+        // popup modal
+        popupModal()
     })
 
-    function getColor() {
-        function storeColor(e) {
-            currentColor = this.getAttribute('data-color')
-        }
+    function findNumber(text) {
+        let r = /\d+/;
+        let s = text;
+        let foundNumber = parseInt(s.match(r))
 
-        colorCircle.forEach((circle, idx) => {
-            let getColor = circle.getAttribute('data-color')
-            circle.style.backgroundColor = getColor
-
-            circle.addEventListener('click', storeColor)
-        })
+        return (foundNumber.toString(16)).toUpperCase()
     }
 
-    getColor()
-
-    let storeComponentColor = {}
-    let limitFillComponent = <?= $dataHewan['component_limit']; ?>
-
-    function coloring() {
-        for (let i = 1; i < limitFillComponent + 1; i++) {
-            fillComponent[i] = document.querySelector(`.drawing #d${i}`)
-        }
-
-        function setColor(e) {
-            this.style.fill = currentColor
-
-            storeComponentColor[this.id.slice(1, 5)] = currentColor
-        }
-
-        fillComponent.forEach(component => {
-            component.addEventListener('click', setColor)
-        })
+    function convertRGB2HEX(rgb) {
+        let x = rgb.replace(' ', '').split(',')
+        2
+        return '#' + findNumber(x[0]) + findNumber(String(x[1])) + findNumber(String(x[2]).trim())
     }
 
-    coloring()
+    // fill svg color in storedsvg
+    function fillStoredImage() {
+        let counter = 1
 
-    function doneColoring() {
-        let modalValidation = document.querySelector('.modal-validation')
+        while (document.querySelector(`.storedImage__wrapper #d${counter}`) != null) {
+            // get color from main svg
+            let mainSvgColor = document.querySelector(`.drawing #d${counter}`).style.fill
 
-        // create click function
-        document.querySelector('.btn-validasi').addEventListener('click', () => {
-            modalValidation.style.display = 'block'
+            document.querySelector(`.storedImage__wrapper #d${counter}`).style.fill = convertRGB2HEX(mainSvgColor)
+            counter++
+        }
+    }
 
-            let fillComponent2 = []
+    // appear when click selesai
+    function popupModal() {
+        document.querySelector('.modal-validation').style.display = 'block'
 
-            for (let i = 1; i < limitFillComponent + 1; i++) {
-                fillComponent2[i] = document.querySelector(`.storedImage__wrapper #d${i}`)
+        // pass data to js object
+        let validation_data = []
 
-                if (storeComponentColor[i] != null || storeComponentColor[i] != undefined) {
-                    fillComponent2[i].style.fill = storeComponentColor[i]
+        <?php for ($i = 0; $i < count($validasi_table); $i++) { ?>
+            validation_data[<?php echo $i ?>] = {
+                nama_area: '<?php echo $validasi_table[$i]['nama_area'] ?>',
+                warna: '<?php echo $validasi_table[$i]['warna'] ?>',
+                poin: <?php echo $validasi_table[$i]['poin'] ?>
+            }
+        <?php } ?>
+
+        let score = 0
+        let counter = 1
+
+        console.log(validation_data)
+
+        // check every area
+        while (document.querySelector(`.drawing #d${counter}`) != null) {
+            let color = document.querySelector(`.drawing #d${counter}`).style.fill
+            // console.log(counter)
+            // console.log('1st = ' + convertRGB2HEX(color))
+            // console.log('2nd = ' + validation_data[counter - 1].warna)
+            // console.log('poin ' + validation_data[counter - 1].poin)
+
+            if (convertRGB2HEX(color) == validation_data[counter - 1].warna) {
+                score += validation_data[counter - 1].poin
+                // console.log('score increment= ' + score)
+
+                if (score >= 100) {
+                    score = 100
                 }
             }
-
-        })
-
-        // create arrow back function
-        function arrowBack() {
-            document.querySelector('.btn-arrow-back').addEventListener('click', () => {
-                modalValidation.style.display = 'none'
-            })
+            counter++
         }
+        document.querySelector('.score').innerHTML = score
 
-        arrowBack()
+        let fetchURL = '<?= base_url('MewarnaiHewan/insertNilai') ?>'
+
+        $.post(
+            fetchURL,
+            data = {
+                pengguna_id: localStorage.getItem('pengguna_id') || null,
+                nilai: score,
+                tanggal_mewarnai: new Date().getFullYear() + '-' + new Date().getMonth() + '-' + new Date().getDate(),
+                jam_mewarnai: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+            },
+            function(result, status) {
+                console.log(result)
+            });
+
     }
 
-    doneColoring();
+    // remove modal function
+    function removeModal() {
+        document.querySelector('.modal-validation').style.display = 'none'
+    }
+
+    document.querySelector('.btn-arrow-back').addEventListener('click', removeModal)
 </script>
