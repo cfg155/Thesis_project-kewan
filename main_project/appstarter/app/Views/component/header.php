@@ -4,7 +4,7 @@
     </div>
     <div class="right__wrapper">
         <div class="login__wrapper">
-            <a href="/masuk-akun" class="btn btn-masuk-akun" style="background-color: #fff;">Masuk/Daftar Akun</a>
+            <a href="<?= base_url() ?>/masuk-akun" class="btn btn-masuk-akun" style="background-color: #fff;">Masuk/Daftar Akun</a>
         </div>
 
         <div class="sound__wrapper">

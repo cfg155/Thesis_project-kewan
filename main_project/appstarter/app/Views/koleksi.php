@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List Binatang</title>
-    <link rel="stylesheet" href="/css/mewarnai-hewan.css">
+    <link rel="stylesheet" href="<?= base_url('/css/mewarnai-hewan.css') ?>">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
@@ -17,22 +17,14 @@
 <body>
     <div class="content__wrapper">
         <!-- Header -->
-        <div class="header">
-            <div class="sound__wrapper">
-                <button>Sound On</button>
-            </div>
-        </div>
+        <?= $this->include('component/header'); ?>
         <!-- content -->
         <div class="content">
             <h1 class="text-center my-5">Koleksi Hewan</h1>
             <div class="list-binatang d-flex justify-content-center row"></div>
         </div>
         <!-- Footer -->
-        <div class="footer position-relative">
-            <div class="logo-kewan__wrapper">
-                <img src="/image/kewan-logo.png" alt="" class="logo-kewan">
-            </div>
-        </div>
+        <?= $this->include('component/footer'); ?>
     </div>
 </body>
 
@@ -51,8 +43,8 @@
                     linkItem +=
                         `
                         <div class="card item col-md-3 my-3" style="width: 18rem;">
-                            <a href="/koleksi-detil/${data[i].list_binatang_id}">
-                                <img src="${data[i].foto_referensi}" class="card-img-top image-hewan" alt="...">
+                            <a href="<?= base_url() ?>/koleksi-detil/${data[i].list_binatang_id}">
+                                <img src="<?= base_url() ?>${data[i].foto_referensi}" class="card-img-top image-hewan" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">${data[i].nama_binatang}</h5>
                                 </div>

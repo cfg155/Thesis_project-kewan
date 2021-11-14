@@ -4,6 +4,8 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/exampl
 // // Variables
 let container, camera, renderer, scene, house
 
+window.addEventListener('load',init)
+
 function init() {
     container = document.querySelector('.scene')
 
@@ -51,5 +53,3 @@ function animate(){
     house.position.y = -50
     renderer.render(scene,camera)
 }
-
-init()

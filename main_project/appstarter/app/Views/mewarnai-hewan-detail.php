@@ -9,7 +9,7 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/mewarnai-hewan-detail.css">
+    <link rel="stylesheet" href="<?= base_url('/css/mewarnai-hewan-detail.css') ?>">
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -28,7 +28,7 @@
                     <img src="<?= $master_table['foto_referensi'] ?>" alt="">
                 </div>
                 <span class="score__wrapper">Nilai : <span class="score">XX</span></span>
-                <a href="" class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></a>
+                <a href="<?= base_url('koleksi-detil') . '/' . $master_table['list_binatang_id'] ?>" class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></a>
             </div>
         </div>
 
@@ -49,11 +49,8 @@
                     </div>
                 </div>
             </div>
-            <div class="footer position-relative">
-                <div class="logo-kewan__wrapper">
-                    <img src="/image/kewan-logo.png" alt="" class="logo-kewan">
-                </div>
-            </div>
+            <!-- Footer -->
+            <?= $this->include('component/footer'); ?>
         </div>
     </div>
 </body>

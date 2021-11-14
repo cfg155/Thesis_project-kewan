@@ -9,7 +9,6 @@ class TebakHewan extends BaseController
     public function __construct()
     {
         $this->db = \Config\Database::connect();
-        $this->tebakHewan = new \App\Models\TebakHewanModel();
     }
 
     public function index()
@@ -34,7 +33,7 @@ class TebakHewan extends BaseController
             'data' => $query->getResultArray()[$randomImage]
         ];
 
-        // d($data);
+        d($data);
 
         return view('tebak-hewan', $data);
     }

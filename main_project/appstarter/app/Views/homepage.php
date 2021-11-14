@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="<?= base_url('/css/homepage.css') ?>">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
@@ -34,19 +34,19 @@
             </div>
             <div class="navigation row">
                 <div class="mewarnai-hewan col-md-3 d-flex justify-content-center">
-                    <a href="/mewarnai-hewan" class="feature">
+                    <a href="<?= base_url('/mewarnai-hewan') ?>" class="feature">
                         <img src="./image/Group 13.png" alt="">
                         <h1><b>Mewarnai Hewan</b></h1>
                     </a>
                 </div>
                 <div class="tebak-hewan col-md-3 d-flex justify-content-center">
-                    <a href="/tebak-hewan" class="feature">
+                    <a href="<?= base_url('/tebak-hewan') ?>" class="feature">
                         <img src="./image/Group 15.png" alt="">
                         <h1><b>Tebak Hewan</b></h1>
                     </a>
                 </div>
                 <div class="koleksi-hewan col-md-3 d-flex justify-content-center">
-                    <a href="/koleksi" class="feature">
+                    <a href="<?= base_url('/koleksi') ?>" class="feature">
                         <img src="./image/Group 16.png" alt="">
                         <h1><b>Koleksi</b></h1>
                     </a>

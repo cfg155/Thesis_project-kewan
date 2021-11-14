@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="./css/tebak-hewan.css">
+    <link rel="stylesheet" href="<?= base_url('./css/tebak-hewan.css') ?>">
 </head>
 
 <body>
@@ -77,18 +77,14 @@
                     <h2>Nilai : <span class="nilai"></span></h2>
                     <div class="btn__wrapper">
                         <button class="btn--reload">Coba lagi</button>
-                        <a href="" class="btn--pelajari">Pelajari lebih lanjut</a>
+                        <a href="<?= base_url('koleksi-detil') . '/' . $data['list_binatang_id'] ?>" class="btn--pelajari">Pelajari lebih lanjut</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="footer position-relative">
-            <div class="logo-kewan__wrapper">
-                <img src="/image/kewan-logo.png" alt="" class="logo-kewan">
-            </div>
-        </div>
+        <?= $this->include('component/footer'); ?>
     </div>
 </body>
 
@@ -96,7 +92,7 @@
 
 <script>
     let score = 100
-    let imgContainer = ` <img src="image/tebak-hewan/<?= $data['nama_foto'] ?>" alt="" class="image">`
+    let imgContainer = ` <img src="<?= base_url() . '/image/tebak-hewan/' . $data['nama_foto'] ?>" alt="" class="image">`
 
     $('.image__wrapper').append(imgContainer)
 

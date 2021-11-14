@@ -1,13 +1,11 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.129.0';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
-var scripts = document.getElementsByTagName("script"),
-    src = scripts[scripts.length-1].src;
-
-    console.log(src)
 
 // // Variables
 let container, camera, renderer, scene, house
+
+window.addEventListener('load',init)
 
 function init() {
     container = document.querySelector('.scene')
@@ -57,5 +55,3 @@ function animate(){
     renderer.render(scene,camera)
 
 }
-
-init()

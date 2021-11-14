@@ -10,7 +10,6 @@ class Pengguna extends BaseController
     public function __construct()
     {
         $this->db = \Config\Database::connect();
-        $this->tebakHewan = new \App\Models\TebakHewanModel();
     }
 
     public function registrasi()
@@ -46,7 +45,7 @@ class Pengguna extends BaseController
         $session->setFlashdata('register_msg', $tmp_msg);
         $session->setFlashdata('email', $postedData['email']);
 
-        return redirect()->to(site_url());
+        return redirect()->to(base_url());
     }
 
     public function login()
@@ -77,6 +76,6 @@ class Pengguna extends BaseController
             echo $failedMsg;
         }
 
-        return redirect()->to(site_url());
+        return redirect()->to(base_url());
     }
 }

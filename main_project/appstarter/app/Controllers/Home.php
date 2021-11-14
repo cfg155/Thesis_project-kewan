@@ -10,7 +10,6 @@ class Home extends BaseController
     {
         $this->session = \Config\Services::session();
         $this->db = \Config\Database::connect();
-        $this->tebakHewan = new \App\Models\TebakHewanModel();
     }
 
     public function index()
