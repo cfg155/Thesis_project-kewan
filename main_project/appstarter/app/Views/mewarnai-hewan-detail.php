@@ -25,7 +25,7 @@
                     <?= $master_table['svg'] ?>
                 </div>
                 <div class="ref-image__wrapper">
-                    <img src="<?= $master_table['foto_referensi'] ?>" alt="">
+                    <img src="<?= base_url($master_table['foto_referensi'])  ?>" alt="">
                 </div>
                 <span class="score__wrapper">Nilai : <span class="score">XX</span></span>
                 <a href="<?= base_url('koleksi-detil') . '/' . $master_table['list_binatang_id'] ?>" class="btn btn-completed"><b>Yuk Pelajari Lebih Lanjut!</b></a>

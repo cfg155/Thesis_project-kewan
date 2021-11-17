@@ -43,8 +43,10 @@
                 <div class="animal-description">
                     <div class="animal-description--header">
                         <h1><?= $dataHewan['nama_binatang'] ?></h1>
-                        <button class="btn btn-light">Suara Hewan</button>
-                        <button class="btn btn-primary">Suara Paragraf</button>
+                        <button class="btn btn-light animal-sound-start">Suara Hewan</button>
+                        <audio class="audio__wrapper" controls autoplay>
+                            <source src="<?= base_url() ?>/audio/<?= $dataHewan['audio_name'] ?>" type="audio/mpeg">
+                        </audio>
                     </div>
                     <table class="table" style="font-size: 24px;">
                         <tr>
@@ -70,6 +72,10 @@
                         <button class="btn btn-light btn-next">Selanjutnya</button>
                     </div>
                 </div>
+
+                <audio class="animal-sound__wrapper">
+                    <source src="<?= base_url() ?>/audio/<?= $dataHewan['suara_binatang'] ?>" type="audio/mpeg">
+                </audio>
             </div>
 
         </div>
@@ -84,6 +90,11 @@
 </html>
 
 <script>
+    document.querySelector('.animal-sound-start').addEventListener('click', () => {
+        document.querySelector('.animal-sound__wrapper').play()
+        document.querySelector('.audio__wrapper').pause()
+    })
+
     let binatangId = <?= $dataHewan['list_binatang_id'] ?>
 
     // get data with AJAX
@@ -108,7 +119,7 @@
 
         let box = document.querySelectorAll('.box')
         box.forEach((box, idx) => {
-            box.style.backgroundImage = `url(../image/tebak-hewan/${parsedJSON.foto_hewan_list[idx].nama_foto})`
+            box.style.backgroundImage = `url(../image/foto-hewan/${parsedJSON.foto_hewan_list[idx].nama_foto})`
         })
     });
 </script>

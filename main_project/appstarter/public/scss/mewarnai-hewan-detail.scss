@@ -95,6 +95,10 @@
         justify-content: center;
         flex-direction: column;
 
+        @include screen-md {
+          width: 300px;
+        }
+
         .btn-validasi__wrapper {
           position: relative;
           display: flex;
@@ -124,6 +128,10 @@
         @media screen and (max-width: 900px) {
           position: inherit;
           padding-top: 200px;
+        }
+
+        @include screen-md {
+          padding-top: 0 !important;
         }
 
         .color-circle__wrapper {

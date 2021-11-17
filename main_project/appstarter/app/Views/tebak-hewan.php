@@ -43,30 +43,30 @@
                 <div class="answer row">
                     <div class="answer-item" class="col-md-2">
                         <button id="ans1" class="btn-answer">Singa</button>
-                        <span>Suara</span>
+                        <!-- <span>Suara</span> -->
                     </div>
                     <div class="answer-item" class="col-md-2">
                         <button id="ans2" class="btn-answer">Beruang</button>
-                        <span>Suara</span>
+                        <!-- <span>Suara</span> -->
                     </div>
                     <div class="answer-item" class="col-md-2">
                         <button id="ans3" class="btn-answer">Rusa</button>
-                        <span>Suara</span>
+                        <!-- <span>Suara</span> -->
                     </div>
                     <div class="answer-item" class="col-md-2">
                         <button id="ans4" class="btn-answer">Kuda</button>
-                        <span>Suara</span>
+                        <!-- <span>Suara</span> -->
                     </div>
                     <div class="answer-item" class="col-md-2">
                         <button id="ans5" class="btn-answer">Gajah</button>
-                        <span>Suara</span>
+                        <!-- <span>Suara</span> -->
                     </div>
                 </div>
             </div>
 
-            <div class="hint__wrapper">
-                <button class="btn--reload">Coba Lagi</button>
-                <button class="btn--hint">Petunjuk Selanjutnya</button>
+            <div class="hint__wrapper row">
+                <button class="btn btn--reload col-md-6">Coba Lagi</button>
+                <button class="btn btn--hint col-md-6">Petunjuk Selanjutnya</button>
             </div>
         </div>
 
@@ -92,7 +92,7 @@
 
 <script>
     let score = 100
-    let imgContainer = ` <img src="<?= base_url() . '/image/tebak-hewan/' . $data['nama_foto'] ?>" alt="" class="image">`
+    let imgContainer = ` <img src="<?= base_url() . '/image/foto-hewan/' . $data['nama_foto'] ?>" alt="" class="image">`
 
     $('.image__wrapper').append(imgContainer)
 

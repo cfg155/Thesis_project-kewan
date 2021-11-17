@@ -1,25 +1,36 @@
 <div class="header">
-    <div class="back__wrapper">
-        <!-- <button>Kembali</button> -->
+    <div class="home__wrapper">
+        <a href="<?= base_url() ?>" class="btn btn-light">Menu Utama</a>
     </div>
     <div class="right__wrapper">
-        <div class="login__wrapper">
-            <a href="<?= base_url() ?>/masuk-akun" class="btn btn-masuk-akun" style="background-color: #fff;">Masuk/Daftar Akun</a>
-        </div>
-
-        <div class="sound__wrapper">
-            <button>Matikan Lagu</button>
-        </div>
+        <button class="button btn btn-light btn--menu">Menu</button>
     </div>
 </div>
 
+<div class="full-menu__wrapper">
+    <h1>Menu</h1>
+    <ul>
+        <li class="menu--item list-masuk-akun"><a href="<?= base_url() ?>/masuk-akun" class="btn-masuk-akun">Masuk/Daftar Akun</a></li>
+        <!-- <li class="menu--item">Matikan Lagu</li> -->
+        <li class="menu--item close-menu">Tutup Menu</li>
+    </ul>
+</div>
+
 <script>
+    document.querySelector('.btn--menu').addEventListener('click', () => {
+        document.querySelector('.full-menu__wrapper').style.transform = 'translateY(0)'
+    })
+
+    document.querySelector('.close-menu').addEventListener('click', () => {
+        document.querySelector('.full-menu__wrapper').style.transform = 'translateY(-100vh)'
+    })
+
     if (localStorage.getItem('pengguna_id') != null) {
-        document.querySelector('.btn-masuk-akun').remove();
+        document.querySelector('.list-masuk-akun').firstChild.remove();
 
-        let logOutBtn = `<button class="btn btn-log-out" style="background-color: #fff;">Keluar Akun</button>`
+        let logOutBtn = '<a href="#" class="btn-log-out">Keluar Akun</a>'
 
-        document.querySelector('.login__wrapper').innerHTML += logOutBtn
+        document.querySelector('.list-masuk-akun').innerHTML += logOutBtn
     }
 
     document.querySelector('.btn-log-out').addEventListener('click', () => {

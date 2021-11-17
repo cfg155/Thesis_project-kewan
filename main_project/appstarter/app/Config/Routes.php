@@ -41,8 +41,11 @@ $routes->get('/mewarnai-hewan-detail/(:segment)', 'MewarnaiHewan::mewarnaiHewanD
 // routes to tebak hewan
 $routes->get('/tebak-hewan', 'TebakHewan::index');
 
-// routes to tebak hewan
+// routes to masuk-akun
 $routes->get('/masuk-akun', 'Pengguna::registrasi');
+
+// routes to quiz
+$routes->get('/quiz', 'Quiz::index');
 
 // routes to koleksi 
 $routes->get('/koleksi', 'Koleksi::ListBinatang');

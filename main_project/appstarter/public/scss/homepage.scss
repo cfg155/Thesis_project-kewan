@@ -2,18 +2,27 @@
 
 .content__wrapper {
   .content {
-    height: 100vh;
     .logo {
       display: flex;
       justify-content: center;
       padding: 50px 0;
+      width: 100%;
+
+      @include screen-sm {
+        width: 60%;
+        margin: auto;
+      }
 
       img {
         max-width: 400px;
+        width: 100%;
       }
     }
 
     .navigation {
+      max-width: 800px;
+      margin: auto;
+
       .feature {
         text-align: center;
         color: #000;
