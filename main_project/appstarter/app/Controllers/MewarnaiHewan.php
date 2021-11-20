@@ -93,8 +93,8 @@ class MewarnaiHewan extends BaseController
         $data = [
             "pengguna_id" => $_POST['pengguna_id'],
             "nilai" => $_POST['nilai'],
-            "tanggal_mewarnai" => $_POST['tanggal_mewarnai'],
-            "jam_mewarnai" => $_POST['jam_mewarnai'],
+            "tanggal" => $_POST['tanggal_mewarnai'],
+            "jam" => $_POST['jam_mewarnai'],
         ];
 
         var_dump($data);

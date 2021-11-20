@@ -47,8 +47,8 @@ class TebakHewan extends BaseController
         $data = [
             "pengguna_id" => $_POST['pengguna_id'],
             "nilai" => $_POST['nilai'],
-            "tanggal_tebak_gambar" => $_POST['tanggal_tebak_gambar'],
-            "jam_tebak_gambar" => $_POST['jam_tebak_gambar'],
+            "tanggal" => $_POST['tanggal_tebak_gambar'],
+            "jam" => $_POST['jam_tebak_gambar'],
         ];
 
         var_dump($data);

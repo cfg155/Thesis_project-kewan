@@ -51,6 +51,10 @@ $routes->get('/quiz', 'Quiz::index');
 $routes->get('/koleksi', 'Koleksi::ListBinatang');
 $routes->get('/koleksi-detil/(:segment)', 'Koleksi::koleksiDetil/$1');
 
+// login admin
+$routes->get('/admin', 'Admin::login');
+$routes->get('/dashboard', 'Admin::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

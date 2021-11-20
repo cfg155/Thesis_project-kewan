@@ -76,8 +76,8 @@ class Quiz extends BaseController
         $data = [
             "pengguna_id" => $_POST['pengguna_id'],
             "nilai" => $_POST['nilai'],
-            "tanggal_kuis" => $_POST['tanggal_kuis'],
-            "jam_kuis" => $_POST['jam_kuis'],
+            "tanggal" => $_POST['tanggal_kuis'],
+            "jam" => $_POST['jam_kuis'],
         ];
 
         var_dump($data);
