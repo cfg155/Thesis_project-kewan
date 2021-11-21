@@ -55,6 +55,12 @@ $routes->get('/koleksi-detil/(:segment)', 'Koleksi::koleksiDetil/$1');
 $routes->get('/admin', 'Admin::login');
 $routes->get('/dashboard', 'Admin::index');
 
+// akun saya
+$routes->get('/akun-saya/(:segment)', 'Pengguna::myAccount/$1');
+
+// lupa akun
+$routes->get('/lupa-password', 'Pengguna::forgetPassword');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

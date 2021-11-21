@@ -11,7 +11,7 @@
     <h1>Menu</h1>
     <ul>
         <li class="menu--item"><a href="<?= base_url() ?>">Menuju menu Utama</a></li>
-        <li class="menu--item my-account" style="display: none;"><a href="<?= base_url() ?>">Akun saya</a></li>
+        <li class="menu--item my-account" style="display: none;"><a href="#">Akun saya</a></li>
         <li class="menu--item list-masuk-akun"><a href="<?= base_url() ?>/masuk-akun" class="btn-masuk-akun">Masuk/Daftar Akun</a></li>
         <!-- <li class="menu--item">Matikan Lagu</li> -->
         <li class="menu--item close-menu">Tutup Menu</li>
@@ -21,6 +21,8 @@
 <script>
     if (localStorage.getItem('pengguna_id') != null) {
         document.querySelector('.my-account').style.display = 'grid'
+        // set href to myaccount
+        document.querySelector('.my-account a').href = `<?= base_url('/akun-saya') ?>/${localStorage.getItem('pengguna_id')}`
     }
 
     document.querySelector('.btn--menu').addEventListener('click', () => {

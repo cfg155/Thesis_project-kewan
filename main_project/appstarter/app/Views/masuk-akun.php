@@ -28,11 +28,12 @@
                         <table class="table">
                             <tr>
                                 <td><input type="text" name="login-email" placeholder="masukan Email" class="form-control"></td>
-                                <td><input type="text" name="login-password" placeholder="masukan Password" class="form-control"></td>
+                                <td><input type="password" name="login-password" placeholder="masukan Password" class="form-control"></td>
                                 <td><input type="submit" name="login-submit" class="btn" style="background-color: #fff;"></td>
                             </tr>
                         </table>
                     </form>
+                    <a href="<?= base_url('lupa-password') ?>">Lupa dengan password?</a>
             </div>
             <hr>
             <div class="register-form__wrapper">
@@ -47,7 +48,7 @@
 
                             <tr>
                                 <td>Masukan Email</td>
-                                <td><input type="text" class="form-control" name="r-email"></td>
+                                <td><input type="email" class="form-control" name="r-email"></td>
                             </tr>
 
                             <tr>
@@ -57,9 +58,9 @@
                             <tr>
                                 <td>Pilih Sekolah</td>
                                 <td>
-                                    <select name="r-sekolah" id="">
-                                        <option value="0">Lainnya</option>
-                                    </select>
+                                    <input type="text" name="r-sekolah" list="list-sekolah" class="form-control" placeholder="Cari Sekolah">
+
+                                    <datalist id="list-sekolah" class="form-control" style="display: none;"></datalist>
                                 </td>
                             </tr>
 
@@ -78,17 +79,15 @@
 
                             <tr>
                                 <td>Masukan Password</td>
-                                <td><input type="text" class="form-control" name="r-password"></td>
+                                <td><input type="password" class="form-control" name="r-password"></td>
                             </tr>
 
                             <tr>
                                 <td></td>
-                                <td><input type="submit" name="submit" class="register"></td>
+                                <td><input type="submit" name="submit" class="btn btn-light btn-register"></td>
                             </tr>
                         </table>
                     </form>
-
-
                 </div>
             </div>
         </div>
@@ -99,3 +98,16 @@
 </body>
 
 </html>
+
+<script>
+    $.get("<?= base_url('Pengguna/listSekolah') ?>", function(result, status) {
+        let data = JSON.parse(result)
+
+        let optionEl = ''
+        for (let i = 0; i < data.length; i++) {
+            optionEl += `<option value="${data[i].nama_sekolah}">`
+        }
+
+        document.getElementById('list-sekolah').innerHTML = optionEl
+    });
+</script>
