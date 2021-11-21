@@ -135,27 +135,40 @@ class Pengguna extends BaseController
 
         if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
             parse_str(file_get_contents("php://input"), $post_vars);
-            $email = $post_vars['email'];
+            $postEmail = $post_vars['email'];
 
+            // check email if exist
+            $key = 'ACA2DF3EB7C24406A338F2F8F707A156';
+            $ch = curl_init('https://api.verimail.io/v3/verify?email=' . $postEmail . '&key=' . $key);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $json = curl_exec($ch);
+            curl_close($ch);
+            $validationResult = json_decode($json, true);
+
+            if ($validationResult['deliverable'] == false) {
+                return msg(false, 'Email Tidak ada');
+            }
+
+            // check email if exist in db
             $table = $this->db->table('pengguna');
             try {
-                $query = $table->select('email, password')->where('email = "' . $email . '"')->get();
+                $query = $table->select('email, password')->where('email = "' . $postEmail . '"')->get();
                 $result = $query->getResultArray()[0];
             } catch (Exception $e) {
                 return msg(false, 'Maaf email tersebut tidak terdaftar');
             }
 
-            // $email = \Config\Services::email();
-            // $email->setTo('leonardolouis2@gmail.com');
-            // $email->setFrom('louis.leonardo@uisproject.xyz', 'info');
-            // $email->setSubject('Email Test');
-            // $email->setMessage('Password Kewan mu adalah ' . $result['password']);
+            $email = \Config\Services::email();
+            $email->setTo($postEmail);
+            $email->setFrom('louis.leonardo@uisproject.xyz', 'info');
+            $email->setSubject('Verifikasi Akun Kewan');
+            $email->setMessage('Password Kewan mu adalah ' . $result['password']);
 
-            // if (!$email->send()) {
-            //     $data = $email->printDebugger(['headers']);
-            //     // print_r($data);
-            //     return  msg(false, 'Gagal mengirimkan ke email');
-            // }
+            if (!$email->send()) {
+                $data = $email->printDebugger(['headers']);
+                // print_r($data);
+                return  msg(false, 'Gagal mengirimkan ke email');
+            }
 
             return  msg(true, 'Password telah dikirimkan ke email mu');
         }

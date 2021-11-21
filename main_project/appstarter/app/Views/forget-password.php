@@ -46,6 +46,7 @@
 <script>
     $('#btn-submit').on('click', function() {
         document.getElementById('btn-submit').setAttribute('disabled', true)
+
         let fetchURL = '<?= base_url('Pengguna/sendPassword') ?>'
         $.ajax({
             url: fetchURL,
