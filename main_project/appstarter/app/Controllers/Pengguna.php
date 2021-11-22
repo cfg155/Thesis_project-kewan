@@ -77,16 +77,20 @@ class Pengguna extends BaseController
 
         $tmp_msg = '';
 
-        if ($table->insert($postedData) && $sekolahExist == true) {
-            $tmp_msg = "Akun telah berhasil dibuat";
+        $session = \Config\Services::session();
+        if ($sekolahExist == true) {
+            if ($table->insert($postedData)) {
+                $tmp_msg = "Akun telah berhasil dibuat";
+
+                $session->setFlashdata('email', $postedData['email']);
+            } else {
+                $tmp_msg = "Akun gagal terbuat";
+            }
         } else {
-            $tmp_msg = "Gagal membuat akun";
+            $tmp_msg = "Sekolah Tidak ada dalam list";
         }
 
-        $session = \Config\Services::session();
         $session->setFlashdata('register_msg', $tmp_msg);
-        $session->setFlashdata('email', $postedData['email']);
-
         return redirect()->to(base_url());
     }
 
